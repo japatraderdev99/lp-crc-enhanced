@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Critical: Preconnect hints for early connection -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://scripts.converteai.net" crossorigin>
+  <link rel="preconnect" href="https://cdn.converteai.net" crossorigin>
+  <link rel="preconnect" href="https://player.vturb.com" crossorigin>
+  <link rel="preconnect" href="https://vt-h-1.b-cdn.net" crossorigin>
+  <link rel="preconnect" href="https://api.vturb.com.br" crossorigin>
+
+  <!-- Deferred resources -->
+  <link rel="dns-prefetch" href="https://cdn.botpress.cloud">
+  <link rel="dns-prefetch" href="https://files.bpcontent.cloud">
+  <link rel="dns-prefetch" href="https://www.clarity.ms">
+  <link rel="dns-prefetch" href="https://connect.facebook.net">
+  <link rel="dns-prefetch" href="https://launcher.hotmart.com">
+
+  <!-- Preload critical font -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"></noscript>
+
+  <!-- Critical CSS Inline (LCP optimization) -->
+  <style>
+    /* Reset & Base */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:'Inter',-apple-system,sans-serif}
+    body{background:linear-gradient(180deg,#050505 0%,#0d0d0d 100%);color:#fff;min-height:100vh;overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(255,107,53,0.15) 0%,transparent 50%);z-index:0;pointer-events:none}
+
+    /* Typography */
+    h1,h2,h3{font-weight:900;line-height:1.15;letter-spacing:-0.02em}
+    h1{font-size:clamp(1.5rem,5vw,4rem)}
+    h2{font-size:clamp(1.25rem,4vw,3rem)}
+
+    /* Layout */
+    .container{max-width:80rem;margin:0 auto;padding:0 1rem}
+    section{position:relative;z-index:1}
+
+    /* Text gradient */
+    .text-gradient{background:linear-gradient(135deg,#ff6b35 0%,#f7931e 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:inline-block}
+
+    /* Card glow effect */
+    .card-glow{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(10px);transition:all 0.3s ease}
+    .card-glow:hover{background:rgba(255,255,255,0.04);border-color:rgba(255,107,53,0.2);transform:translateY(-2px)}
+
+    /* Button */
+    .btn-primary{background:linear-gradient(135deg,#ff6b35 0%,#f7931e 100%);color:#fff;border:none;padding:1.25rem 2rem;border-radius:0.75rem;font-weight:700;font-size:1rem;cursor:pointer;transition:all 0.3s ease;display:inline-block;text-decoration:none;text-align:center}
+    .btn-primary:hover{transform:scale(1.02);box-shadow:0 20px 40px rgba(255,107,53,0.3)}
+
+    /* Header */
+    header{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)}
+    header .bg{position:absolute;inset:0;background:rgba(8,8,8,0.8)}
+
+    /* Video container - prevent CLS */
+    .vsl-container{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:1rem;overflow:hidden;border:1px solid rgba(255,255,255,0.06)}
+    vturb-smartplayer{display:block;width:100%;height:100%}
+
+    /* Grid utilities */
+    .grid{display:grid;gap:1rem}
+    .grid-2{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+    .grid-3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+
+    /* Spacing */
+    .py-20{padding-top:5rem;padding-bottom:5rem}
+    .mb-12{margin-bottom:3rem}
+    .mb-8{margin-bottom:2rem}
+    .mb-4{margin-bottom:1rem}
+
+    /* Utilities */
+    .text-center{text-align:center}
+    .hidden{display:none}
+
+    /* Loading state */
+    .loading{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease}
+    .loaded{opacity:1;transform:translateY(0)}
+
+    @media(min-width:640px){.sm\:grid-2{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1024px){.lg\:grid-3{grid-template-columns:repeat(3,1fr)}.lg\:grid-4{grid-template-columns:repeat(4,1fr)}}
+  </style>
+
+  <!-- Main CSS (deferred) -->
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="icon" type="image/png" href="/f5-logo.png">
+  <title>Método F5 - Transforme Sua CRC em Máquina de Vendas em 30 Dias</title>
+  <meta name="description" content="Método F5 validado em +3.000 clínicas: aumente em 60% a conversão da sua clínica em 30 dias. Sistema que fatura R$ 2M+/ano no mercado odontológico.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Método F5 - Transforme Sua CRC em Máquina de Vendas">
+  <meta property="og:description" content="Aumente em 60% a conversão da sua clínica em 30 dias com o método validado em +3.000 clínicas.">
+  <meta property="og:type" content="website">
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "rfcyp9syov");
+  </script>
+
+  <!-- Hotmart Launcher Script -->
+  <script id="hotmart_launcher_script">
+    (function(l,a,u,n,c,h,e,r){l['HotmartLauncherObject']=c;l[c]=l[c]||function(){
+    (l[c].q=l[c].q||[]).push(arguments)},l[c].l=1*new Date();h=a.createElement(u),
+    e=a.getElementsByTagName(u)[0];h.async=1;h.src=n;e.parentNode.insertBefore(h,e)
+    })(window,document,'script','//launcher.hotmart.com/launcher.js','hot');
+
+    hot('account','b69c406a-9f7d-3694-a365-d9139cb7525e');
+  </script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="bg"></div>
+    <div class="container" style="position:relative;display:flex;align-items:center;justify-content:space-between;padding-top:1rem;padding-bottom:1rem">
+      <img src="/f5-logo.png" alt="F5 Estratégia" style="height:2.5rem;width:auto">
+      <span style="font-size:0.875rem;color:rgba(255,255,255,0.6)">Método CRC que Converte</span>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" style="min-height:100vh;padding-top:8rem;padding-bottom:3rem">
+    <div class="container">
+      <div style="max-width:72rem;margin:0 auto">
+        <!-- Headline -->
+        <h1 class="text-center mb-4">
+          <span class="text-gradient">Assista ao Vídeo Abaixo</span><br>
+          Para Descobrir Como Transformar Sua CRC em Uma<br>
+          <span class="text-gradient">Máquina de Vendas em 30 Dias.</span>
+        </h1>
+
+        <p class="text-center mb-8" style="color:rgba(255,255,255,0.6);max-width:48rem;margin-left:auto;margin-right:auto">
+          O método que já aumentou a conversão de <strong style="color:#ff6b35">+3.000 clínicas odontológicas</strong> no Brasil
+        </p>
+
+        <!-- VSL -->
+        <div class="vsl-container mb-12" style="max-width:64rem;margin:0 auto">
+          <vturb-smartplayer id="vid-6930a75d30e3e1f31709f2d5"></vturb-smartplayer>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center mb-12">
+          <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L" style="display:inline-block;width:100%;max-width:40rem">
+            QUERO CONVERTER MAIS PACIENTES AGORA →
+          </a>
+        </div>
+
+        <!-- Benefits Grid -->
+        <div class="grid lg:grid-4" style="max-width:72rem;margin:0 auto">
+          <div class="card-glow" style="padding:1.25rem;border-radius:0.75rem">
+            <div style="display:flex;align-items:start;gap:0.625rem">
+              <span style="color:#ff6b35;font-size:1.25rem">✓</span>
+              <span style="font-size:0.875rem;color:rgba(255,255,255,0.7)">Método validado em +3.000 clínicas</span>
+            </div>
+          </div>
+          <div class="card-glow" style="padding:1.25rem;border-radius:0.75rem">
+            <div style="display:flex;align-items:start;gap:0.625rem">
+              <span style="color:#ff6b35;font-size:1.25rem">✓</span>
+              <span style="font-size:0.875rem;color:rgba(255,255,255,0.7)">Aumento de 60% na conversão em 30 dias</span>
+            </div>
+          </div>
+          <div class="card-glow" style="padding:1.25rem;border-radius:0.75rem">
+            <div style="display:flex;align-items:start;gap:0.625rem">
+              <span style="color:#ff6b35;font-size:1.25rem">✓</span>
+              <span style="font-size:0.875rem;color:rgba(255,255,255,0.7)">Sistema usado por redes que faturam R$2M+/ano</span>
+            </div>
+          </div>
+          <div class="card-glow" style="padding:1.25rem;border-radius:0.75rem">
+            <div style="display:flex;align-items:start;gap:0.625rem">
+              <span style="color:#ff6b35;font-size:1.25rem">✓</span>
+              <span style="font-size:0.875rem;color:rgba(255,255,255,0.7)">Garantia de 30 dias ou seu dinheiro de volta</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problems Section -->
+  <section id="problems" class="py-20 loading">
+    <div class="container" style="max-width:72rem">
+      <h2 class="text-center mb-4">
+        Você Reconhece Esses Problemas<br>
+        <span class="text-gradient">na Sua Clínica?</span>
+      </h2>
+
+      <p class="text-center mb-12" style="color:rgba(255,255,255,0.6);max-width:48rem;margin-left:auto;margin-right:auto">
+        Se você identificou <strong style="color:#fff">pelo menos 2 desses problemas</strong>, continue lendo...
+      </p>
+
+      <div class="grid lg:grid-3 mb-12">
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
+          <div style="width:3rem;height:3rem;background:rgba(255,107,53,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+            <span style="color:#ff6b35;font-size:1.5rem">📉</span>
+          </div>
+          <p style="font-size:0.875rem;color:rgba(255,255,255,0.8)">Leads que somem no WhatsApp sem resposta</p>
+        </div>
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
+          <div style="width:3rem;height:3rem;background:rgba(255,107,53,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+            <span style="color:#ff6b35;font-size:1.5rem">💰</span>
+          </div>
+          <p style="font-size:0.875rem;color:rgba(255,255,255,0.8)">Taxa de conversão baixa mesmo investindo em marketing</p>
+        </div>
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
+          <div style="width:3rem;height:3rem;background:rgba(255,107,53,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+            <span style="color:#ff6b35;font-size:1.5rem">👥</span>
+          </div>
+          <p style="font-size:0.875rem;color:rgba(255,255,255,0.8)">CRC que não consegue converter oportunidades</p>
+        </div>
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
+          <div style="width:3rem;height:3rem;background:rgba(255,107,53,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+            <span style="color:#ff6b35;font-size:1.5rem">📊</span>
+          </div>
+          <p style="font-size:0.875rem;color:rgba(255,255,255,0.8)">Leads desqualificados que não fecham</p>
+        </div>
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
+          <div style="width:3rem;height:3rem;background:rgba(255,107,53,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+            <span style="color:#ff6b35;font-size:1.5rem">🎯</span>
+          </div>
+          <p style="font-size:0.875rem;color:rgba(255,255,255,0.8)">Falta de processo comercial estruturado</p>
+        </div>
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
+          <div style="width:3rem;height:3rem;background:rgba(255,107,53,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+            <span style="color:#ff6b35;font-size:1.5rem">⚡</span>
+          </div>
+          <p style="font-size:0.875rem;color:rgba(255,255,255,0.8)">Concorrente fecha em 5 minutos, você demora dias</p>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L">
+          RESOLVER ESSES PROBLEMAS
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution Section -->
+  <section id="solution" class="py-20 loading">
+    <div class="container" style="max-width:64rem">
+      <div class="text-center mb-12">
+        <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,107,53,0.1);color:#ff6b35;padding:0.5rem 1rem;border-radius:9999px;margin-bottom:1.5rem">
+          <span>✓</span>
+          <span style="font-size:0.875rem;font-weight:700">A SOLUÇÃO</span>
+        </div>
+
+        <h2 class="mb-4">
+          Transformar Técnica<br>
+          <span class="text-gradient">em Processo Replicável</span>
+        </h2>
+
+        <p style="color:rgba(255,255,255,0.6);max-width:48rem;margin:0 auto">
+          O segredo das clínicas que faturam +R$500k/mês:
+          <strong style="color:#fff">um método estruturado que funciona com qualquer CRC.</strong>
+        </p>
+      </div>
+
+      <div class="grid lg:grid-3 mb-12">
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
+          <div style="width:2.5rem;height:2.5rem;background:rgba(255,107,53,0.1);border-radius:9999px;display:flex;align-items:center;justify-content:center;margin:0 auto 0.75rem">
+            <span style="color:#ff6b35;font-weight:700">1</span>
+          </div>
+          <p style="font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.8)">Vendas é TÉCNICA, não é talento ou experiência</p>
+        </div>
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
+          <div style="width:2.5rem;height:2.5rem;background:rgba(255,107,53,0.1);border-radius:9999px;display:flex;align-items:center;justify-content:center;margin:0 auto 0.75rem">
+            <span style="color:#ff6b35;font-weight:700">2</span>
+          </div>
+          <p style="font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.8)">Com o processo certo, qualquer CRC pode converter 60% mais</p>
+        </div>
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
+          <div style="width:2.5rem;height:2.5rem;background:rgba(255,107,53,0.1);border-radius:9999px;display:flex;align-items:center;justify-content:center;margin:0 auto 0.75rem">
+            <span style="color:#ff6b35;font-weight:700">3</span>
+          </div>
+          <p style="font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.8)">Treinamento agressivo + acompanhamento permanente = resultado</p>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L">
+          QUERO APRENDER ESSE MÉTODO →
+        </a>
+        <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.75rem">Acesso imediato + Garantia de 30 dias</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20 loading" data-section="faq">
+    <div class="container" style="max-width:56rem">
+      <div class="text-center mb-12">
+        <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,107,53,0.1);color:#ff6b35;padding:0.5rem 1rem;border-radius:9999px;margin-bottom:1.5rem">
+          <span>?</span>
+          <span style="font-size:0.875rem;font-weight:700">DÚVIDAS FREQUENTES</span>
+        </div>
+
+        <h2 class="mb-4">
+          Perguntas<br>
+          <span class="text-gradient">Frequentes</span>
+        </h2>
+      </div>
+
+      <div class="faq-accordion" style="margin-bottom:3rem"></div>
+
+      <div class="text-center">
+        <p style="color:rgba(255,255,255,0.6);margin-bottom:1rem">Ainda tem dúvidas?</p>
+        <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L">
+          QUERO COMEÇAR AGORA →
+        </a>
+        <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.75rem">Garantia de 30 dias ou seu dinheiro de volta</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="border-top:1px solid rgba(255,255,255,0.06);padding:3rem 0">
+    <div class="container text-center">
+      <p style="color:rgba(255,255,255,0.4);font-size:0.875rem">
+        © 2025 F5 Estratégia. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Chatbot trigger button -->
+  <div id="chatbot-trigger" class="hidden" style="position:fixed;bottom:2rem;right:2rem;z-index:90">
+    <button class="btn-primary" style="padding:1rem 1.5rem;box-shadow:0 10px 30px rgba(255,107,53,0.4);position:relative">
+      <span style="position:absolute;top:-0.25rem;right:-0.25rem;width:0.75rem;height:0.75rem;background:#10b981;border-radius:9999px;animation:pulse 2s infinite"></span>
+      💬 Consultor ao vivo
+    </button>
+  </div>
+
+  <!-- Botpress Chatbot Container -->
+  <div id="botpress-webchat"></div>
+
+  <!-- Load VTurb player -->
+  <script>
+    const vturbScript = document.createElement('script');
+    vturbScript.src = 'https://scripts.converteai.net/de1f52b9-182e-4159-9b25-8c5e55b7fd12/players/6930a75d30e3e1f31709f2d5/v4/player.js';
+    vturbScript.async = true;
+    document.head.appendChild(vturbScript);
+  </script>
+
+  <!-- Main application script -->
+  <script type="module" src="/js/main.js"></script>
+
+  <style>
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+  </style>
+</body>
+</html>
