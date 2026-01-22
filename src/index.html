@@ -4,96 +4,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Critical: Preconnect hints for early connection -->
+  <!-- Critical: Preconnect hints -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://scripts.converteai.net" crossorigin>
   <link rel="preconnect" href="https://cdn.converteai.net" crossorigin>
   <link rel="preconnect" href="https://player.vturb.com" crossorigin>
-  <link rel="preconnect" href="https://vt-h-1.b-cdn.net" crossorigin>
   <link rel="preconnect" href="https://api.vturb.com.br" crossorigin>
 
   <!-- Deferred resources -->
   <link rel="dns-prefetch" href="https://cdn.botpress.cloud">
-  <link rel="dns-prefetch" href="https://files.bpcontent.cloud">
   <link rel="dns-prefetch" href="https://www.clarity.ms">
   <link rel="dns-prefetch" href="https://connect.facebook.net">
-  <link rel="dns-prefetch" href="https://launcher.hotmart.com">
 
-  <!-- Preload critical font -->
+  <!-- Preload font -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"></noscript>
 
-  <!-- Critical CSS Inline (LCP optimization) -->
+  <!-- Critical CSS inline -->
   <style>
-    /* Reset & Base */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:'Inter',-apple-system,sans-serif}
+    html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:'Inter',-apple-system,sans-serif;scroll-behavior:smooth}
     body{background:linear-gradient(180deg,#050505 0%,#0d0d0d 100%);color:#fff;min-height:100vh;overflow-x:hidden}
     body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(255,107,53,0.15) 0%,transparent 50%);z-index:0;pointer-events:none}
-
-    /* Typography */
+    
     h1,h2,h3{font-weight:900;line-height:1.15;letter-spacing:-0.02em}
     h1{font-size:clamp(1.5rem,5vw,4rem)}
     h2{font-size:clamp(1.25rem,4vw,3rem)}
-
-    /* Layout */
+    
     .container{max-width:80rem;margin:0 auto;padding:0 1rem}
     section{position:relative;z-index:1}
-
-    /* Text gradient */
+    
     .text-gradient{background:linear-gradient(135deg,#ff6b35 0%,#f7931e 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:inline-block}
-
-    /* Card glow effect */
+    
     .card-glow{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(10px);transition:all 0.3s ease}
     .card-glow:hover{background:rgba(255,255,255,0.04);border-color:rgba(255,107,53,0.2);transform:translateY(-2px)}
-
-    /* Button */
+    
     .btn-primary{background:linear-gradient(135deg,#ff6b35 0%,#f7931e 100%);color:#fff;border:none;padding:1.25rem 2rem;border-radius:0.75rem;font-weight:700;font-size:1rem;cursor:pointer;transition:all 0.3s ease;display:inline-block;text-decoration:none;text-align:center}
     .btn-primary:hover{transform:scale(1.02);box-shadow:0 20px 40px rgba(255,107,53,0.3)}
-
-    /* Header */
+    
     header{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)}
     header .bg{position:absolute;inset:0;background:rgba(8,8,8,0.8)}
-
-    /* Video container - prevent CLS */
+    
     .vsl-container{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:1rem;overflow:hidden;border:1px solid rgba(255,255,255,0.06)}
     vturb-smartplayer{display:block;width:100%;height:100%}
-
-    /* Grid utilities */
+    
     .grid{display:grid;gap:1rem}
     .grid-2{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
     .grid-3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-
-    /* Spacing */
+    
     .py-20{padding-top:5rem;padding-bottom:5rem}
     .mb-12{margin-bottom:3rem}
     .mb-8{margin-bottom:2rem}
     .mb-4{margin-bottom:1rem}
-
-    /* Utilities */
+    
     .text-center{text-align:center}
     .hidden{display:none}
-
-    /* Loading state */
-    .loading{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease}
+    
+    .loading{opacity:0;transform:translateY(40px);transition:opacity 0.6s ease,transform 0.6s ease}
     .loaded{opacity:1;transform:translateY(0)}
-
+    
+    [data-carousel]{position:relative;overflow:hidden}
+    [data-carousel-track]{display:flex;gap:1rem;transition:transform 0.3s ease-out;will-change:transform}
+    [data-carousel-slide]{flex-shrink:0;width:100%}
+    [data-carousel-prev],[data-carousel-next]{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,107,53,0.9);color:#fff;border:none;width:2.5rem;height:2.5rem;border-radius:50%;cursor:pointer;z-index:10;font-size:1.25rem;font-weight:700}
+    [data-carousel-prev]{left:1rem}
+    [data-carousel-next]{right:1rem}
+    [data-carousel-prev]:hover,[data-carousel-next]:hover{background:#ff6b35}
+    
     @media(min-width:640px){.sm\:grid-2{grid-template-columns:repeat(2,1fr)}}
     @media(min-width:1024px){.lg\:grid-3{grid-template-columns:repeat(3,1fr)}.lg\:grid-4{grid-template-columns:repeat(4,1fr)}}
   </style>
 
-  <!-- Main CSS (deferred) -->
+  <!-- Main CSS -->
   <link rel="stylesheet" href="/css/main.css">
 
   <link rel="icon" type="image/png" href="/f5-logo.png">
   <title>Método F5 - Transforme Sua CRC em Máquina de Vendas em 30 Dias</title>
-  <meta name="description" content="Método F5 validado em +3.000 clínicas: aumente em 60% a conversão da sua clínica em 30 dias. Sistema que fatura R$ 2M+/ano no mercado odontológico.">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Método F5 - Transforme Sua CRC em Máquina de Vendas">
-  <meta property="og:description" content="Aumente em 60% a conversão da sua clínica em 30 dias com o método validado em +3.000 clínicas.">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Método F5 validado em +3.000 clínicas: aumente em 60% a conversão da sua clínica em 30 dias.">
 
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
@@ -121,7 +109,7 @@
     <div class="bg"></div>
     <div class="container" style="position:relative;display:flex;align-items:center;justify-content:space-between;padding-top:1rem;padding-bottom:1rem">
       <img src="/f5-logo.png" alt="F5 Estratégia" style="height:2.5rem;width:auto">
-      <span style="font-size:0.875rem;color:rgba(255,255,255,0.6)">Método CRC que Converte</span>
+      <span style="font-size:0.875rem;color:rgba(255,255,255,0.6)">CRC que Converte</span>
     </div>
   </header>
 
@@ -129,7 +117,6 @@
   <section id="hero" style="min-height:100vh;padding-top:8rem;padding-bottom:3rem">
     <div class="container">
       <div style="max-width:72rem;margin:0 auto">
-        <!-- Headline -->
         <h1 class="text-center mb-4">
           <span class="text-gradient">Assista ao Vídeo Abaixo</span><br>
           Para Descobrir Como Transformar Sua CRC em Uma<br>
@@ -140,19 +127,16 @@
           O método que já aumentou a conversão de <strong style="color:#ff6b35">+3.000 clínicas odontológicas</strong> no Brasil
         </p>
 
-        <!-- VSL -->
         <div class="vsl-container mb-12" style="max-width:64rem;margin:0 auto">
           <vturb-smartplayer id="vid-6930a75d30e3e1f31709f2d5"></vturb-smartplayer>
         </div>
 
-        <!-- CTA -->
         <div class="text-center mb-12">
-          <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L" style="display:inline-block;width:100%;max-width:40rem">
+          <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L?checkoutMode=10&bid=1769119719528" style="display:inline-block;width:100%;max-width:40rem">
             QUERO CONVERTER MAIS PACIENTES AGORA →
           </a>
         </div>
 
-        <!-- Benefits Grid -->
         <div class="grid lg:grid-4" style="max-width:72rem;margin:0 auto">
           <div class="card-glow" style="padding:1.25rem;border-radius:0.75rem">
             <div style="display:flex;align-items:start;gap:0.625rem">
@@ -198,46 +182,122 @@
       <div class="grid lg:grid-3 mb-12">
         <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
           <div style="width:3rem;height:3rem;background:rgba(255,107,53,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
-            <span style="color:#ff6b35;font-size:1.5rem">📉</span>
+            <span style="font-size:1.5rem">📉</span>
           </div>
           <p style="font-size:0.875rem;color:rgba(255,255,255,0.8)">Leads que somem no WhatsApp sem resposta</p>
         </div>
         <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
           <div style="width:3rem;height:3rem;background:rgba(255,107,53,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
-            <span style="color:#ff6b35;font-size:1.5rem">💰</span>
+            <span style="font-size:1.5rem">💰</span>
           </div>
           <p style="font-size:0.875rem;color:rgba(255,255,255,0.8)">Taxa de conversão baixa mesmo investindo em marketing</p>
         </div>
         <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
           <div style="width:3rem;height:3rem;background:rgba(255,107,53,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
-            <span style="color:#ff6b35;font-size:1.5rem">👥</span>
+            <span style="font-size:1.5rem">👥</span>
           </div>
           <p style="font-size:0.875rem;color:rgba(255,255,255,0.8)">CRC que não consegue converter oportunidades</p>
         </div>
         <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
           <div style="width:3rem;height:3rem;background:rgba(255,107,53,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
-            <span style="color:#ff6b35;font-size:1.5rem">📊</span>
+            <span style="font-size:1.5rem">📊</span>
           </div>
           <p style="font-size:0.875rem;color:rgba(255,255,255,0.8)">Leads desqualificados que não fecham</p>
         </div>
         <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
           <div style="width:3rem;height:3rem;background:rgba(255,107,53,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
-            <span style="color:#ff6b35;font-size:1.5rem">🎯</span>
+            <span style="font-size:1.5rem">🎯</span>
           </div>
           <p style="font-size:0.875rem;color:rgba(255,255,255,0.8)">Falta de processo comercial estruturado</p>
         </div>
         <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
           <div style="width:3rem;height:3rem;background:rgba(255,107,53,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
-            <span style="color:#ff6b35;font-size:1.5rem">⚡</span>
+            <span style="font-size:1.5rem">⚡</span>
           </div>
           <p style="font-size:0.875rem;color:rgba(255,255,255,0.8)">Concorrente fecha em 5 minutos, você demora dias</p>
         </div>
       </div>
 
       <div class="text-center">
-        <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L">
+        <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L?checkoutMode=10&bid=1769119719528">
           RESOLVER ESSES PROBLEMAS
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Deepening Section -->
+  <section id="problem-deepening" class="py-20 loading" style="background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(255,107,53,0.05) 100%)">
+    <div class="container" style="max-width:64rem">
+      <div class="text-center mb-12">
+        <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(239,68,68,0.1);color:#ef4444;padding:0.5rem 1rem;border-radius:9999px;margin-bottom:1.5rem">
+          <span>⚠️</span>
+          <span style="font-size:0.875rem;font-weight:700">A CAUSA RAIZ</span>
+        </div>
+
+        <h2 class="mb-4">
+          Por Que Sua CRC Não Converte?<br>
+          <span class="text-gradient">O Problema Que Ninguém Te Conta</span>
+        </h2>
+
+        <p style="color:rgba(255,255,255,0.6);max-width:48rem;margin:0 auto">
+          O erro não está na agência, no criativo ou no lead.
+          <strong style="color:#fff"> Está na falta de técnica.</strong>
+        </p>
+      </div>
+
+      <div class="grid sm:grid-2" style="gap:1rem;margin-bottom:3rem">
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem">
+          <div style="display:flex;gap:1rem">
+            <div style="width:3rem;height:3rem;background:rgba(239,68,68,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <span style="color:#ef4444;font-size:1.25rem">✕</span>
+            </div>
+            <div>
+              <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem">Treinada para ATENDER, não para VENDER</h3>
+              <p style="font-size:0.875rem;color:rgba(255,255,255,0.6)">Sua CRC foi ensinada a ser educada, mas ninguém ensinou técnica de vendas</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem">
+          <div style="display:flex;gap:1rem">
+            <div style="width:3rem;height:3rem;background:rgba(239,68,68,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <span style="color:#ef4444;font-size:1.25rem">✕</span>
+            </div>
+            <div>
+              <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem">Não identifica nível de consciência do lead</h3>
+              <p style="font-size:0.875rem;color:rgba(255,255,255,0.6)">Trata todos os leads igual, sem personalizar a abordagem</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem">
+          <div style="display:flex;gap:1rem">
+            <div style="width:3rem;height:3rem;background:rgba(239,68,68,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <span style="color:#ef4444;font-size:1.25rem">✕</span>
+            </div>
+            <div>
+              <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem">Demora para responder = lead perdido</h3>
+              <p style="font-size:0.875rem;color:rgba(255,255,255,0.6)">Enquanto você está ocupada, o concorrente já fechou em 5 minutos</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem">
+          <div style="display:flex;gap:1rem">
+            <div style="width:3rem;height:3rem;background:rgba(239,68,68,0.1);border-radius:0.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <span style="color:#ef4444;font-size:1.25rem">✕</span>
+            </div>
+            <div>
+              <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem">Não conhece BANT, pitch ou follow-up</h3>
+              <p style="font-size:0.875rem;color:rgba(255,255,255,0.6)">Sem técnica, cada conversa vira improviso e o resultado é imprevisível</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-glow" style="padding:2rem;border-radius:1rem;border-color:rgba(255,107,53,0.2)">
+        <p class="text-center" style="font-size:1.125rem;font-weight:500">
+          💡 <strong style="color:#ff6b35">Cada palavra mal colocada no WhatsApp</strong> gera prejuízo.
+          Cada lead não qualificado é dinheiro jogado fora.
+        </p>
       </div>
     </div>
   </section>
@@ -267,28 +327,470 @@
           <div style="width:2.5rem;height:2.5rem;background:rgba(255,107,53,0.1);border-radius:9999px;display:flex;align-items:center;justify-content:center;margin:0 auto 0.75rem">
             <span style="color:#ff6b35;font-weight:700">1</span>
           </div>
-          <p style="font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.8)">Vendas é TÉCNICA, não é talento ou experiência</p>
+          <p style="font-size:0.875rem;font-weight:500">Vendas é TÉCNICA, não é talento ou experiência</p>
         </div>
         <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
           <div style="width:2.5rem;height:2.5rem;background:rgba(255,107,53,0.1);border-radius:9999px;display:flex;align-items:center;justify-content:center;margin:0 auto 0.75rem">
             <span style="color:#ff6b35;font-weight:700">2</span>
           </div>
-          <p style="font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.8)">Com o processo certo, qualquer CRC pode converter 60% mais</p>
+          <p style="font-size:0.875rem;font-weight:500">Com o processo certo, qualquer CRC pode converter 60% mais</p>
         </div>
         <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
           <div style="width:2.5rem;height:2.5rem;background:rgba(255,107,53,0.1);border-radius:9999px;display:flex;align-items:center;justify-content:center;margin:0 auto 0.75rem">
             <span style="color:#ff6b35;font-weight:700">3</span>
           </div>
-          <p style="font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.8)">Treinamento agressivo + acompanhamento permanente = resultado</p>
+          <p style="font-size:0.875rem;font-weight:500">Treinamento agressivo + acompanhamento = resultado</p>
         </div>
       </div>
 
       <div class="text-center">
-        <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L">
+        <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L?checkoutMode=10&bid=1769119719528">
           QUERO APRENDER ESSE MÉTODO →
         </a>
         <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.75rem">Acesso imediato + Garantia de 30 dias</p>
       </div>
+    </div>
+  </section>
+
+  <!-- Cases Section -->
+  <section id="cases" class="py-20 loading">
+    <div class="container" style="max-width:80rem">
+      <h2 class="text-center mb-4">
+        Você Quer Promessas ou<br>
+        <span class="text-gradient">Quer Provas?</span>
+      </h2>
+      <p class="text-center mb-12" style="color:rgba(255,255,255,0.7);max-width:48rem;margin-left:auto;margin-right:auto">
+        Veja os números reais de clínicas que escolheram resultados ao invés de discursos.
+      </p>
+
+      <!-- Main Cases Carousel -->
+      <div data-carousel data-slides="1" data-loop class="mb-12" style="max-width:72rem;margin:0 auto">
+        <div data-carousel-track>
+          <!-- Case 1: VIVA ODONTOLOGIA -->
+          <div data-carousel-slide>
+            <div class="card-glow" style="border-radius:1rem;overflow:hidden">
+              <img src="/assets/images/vivia-odonto.webp" alt="Viva Odontologia" loading="lazy" style="width:100%;height:200px;object-fit:cover">
+              <div style="padding:1.5rem">
+                <h3 style="font-size:1.125rem;font-weight:900;margin-bottom:1rem">VIVA ODONTOLOGIA 🏆</h3>
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-bottom:1rem">
+                  <div>
+                    <p style="font-size:0.75rem;color:rgba(255,255,255,0.6)">Investimento</p>
+                    <p style="font-size:1.125rem;font-weight:700;color:#ff6b35">R$ 124.294</p>
+                  </div>
+                  <div>
+                    <p style="font-size:0.75rem;color:rgba(255,255,255,0.6)">Faturamento</p>
+                    <p style="font-size:1.125rem;font-weight:700;color:#ff6b35">R$ 3,8 MI</p>
+                  </div>
+                  <div>
+                    <p style="font-size:0.75rem;color:rgba(255,255,255,0.6)">ROAS</p>
+                    <p style="font-size:1.125rem;font-weight:700;color:#ff6b35">27,11x</p>
+                  </div>
+                  <div>
+                    <p style="font-size:0.75rem;color:rgba(255,255,255,0.6)">Período</p>
+                    <p style="font-size:1.125rem;font-weight:700;color:#ff6b35">10 meses</p>
+                  </div>
+                </div>
+                <p style="font-size:0.875rem;color:rgba(255,255,255,0.7)">
+                  De R$124 mil investidos para R$3,8 MILHÕES em vendas. Sistema completo multiplicou resultado em 27x.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case 2: ORAL UNIC VILA MARIANA -->
+          <div data-carousel-slide>
+            <div class="card-glow" style="border-radius:1rem;overflow:hidden">
+              <img src="/assets/images/oral-unic-vila-mariana.webp" alt="Oral Unic Vila Mariana" loading="lazy" style="width:100%;height:200px;object-fit:cover">
+              <div style="padding:1.5rem">
+                <h3 style="font-size:1.125rem;font-weight:900;margin-bottom:1rem">ORAL UNIC VILA MARIANA 🏆</h3>
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-bottom:1rem">
+                  <div>
+                    <p style="font-size:0.75rem;color:rgba(255,255,255,0.6)">Vendas</p>
+                    <p style="font-size:1.125rem;font-weight:700;color:#ff6b35">R$ 2 MI+</p>
+                  </div>
+                  <div>
+                    <p style="font-size:0.75rem;color:rgba(255,255,255,0.6)">Período</p>
+                    <p style="font-size:1.125rem;font-weight:700;color:#ff6b35">14 meses</p>
+                  </div>
+                </div>
+                <p style="font-size:0.875rem;color:rgba(255,255,255,0.7)">
+                  Mais de R$2 milhões em vendas em 14 meses. Crescimento consistente e escalável.
+                </p>
+                <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.5rem">
+                  Ticket médio: R$12.500 | Comparecimento: 80%
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case 3: ORAL UNIC JOÃO PESSOA -->
+          <div data-carousel-slide>
+            <div class="card-glow" style="border-radius:1rem;overflow:hidden">
+              <img src="/assets/images/oral-unic-joao-pessoa.webp" alt="Oral Unic João Pessoa" loading="lazy" style="width:100%;height:200px;object-fit:cover">
+              <div style="padding:1.5rem">
+                <h3 style="font-size:1.125rem;font-weight:900;margin-bottom:1rem">ORAL UNIC JOÃO PESSOA 🏆</h3>
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-bottom:1rem">
+                  <div>
+                    <p style="font-size:0.75rem;color:rgba(255,255,255,0.6)">Vendas</p>
+                    <p style="font-size:1.125rem;font-weight:700;color:#ff6b35">R$ 820 mil</p>
+                  </div>
+                  <div>
+                    <p style="font-size:0.75rem;color:rgba(255,255,255,0.6)">ROAS</p>
+                    <p style="font-size:1.125rem;font-weight:700;color:#ff6b35">27x</p>
+                  </div>
+                </div>
+                <p style="font-size:0.875rem;color:rgba(255,255,255,0.7)">
+                  R$820 mil efetivados com ROAS de 27x. Taxa de conversão de 43% com CPL de apenas R$18,34.
+                </p>
+                <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.5rem">
+                  Período: 8 meses
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button data-carousel-prev>←</button>
+        <button data-carousel-next>→</button>
+      </div>
+
+      <div class="text-center">
+        <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L?checkoutMode=10&bid=1769119719528">
+          QUERO RESULTADOS COMO ESTES
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-20 loading" style="background:rgba(255,107,53,0.02)">
+    <div class="container" style="max-width:80rem">
+      <h2 class="text-center mb-4">
+        Não é Sobre Nós.<br>
+        <span class="text-gradient">É Sobre Quem Confia em Nós.</span>
+      </h2>
+      <p class="text-center mb-12" style="color:rgba(255,255,255,0.7);max-width:48rem;margin-left:auto;margin-right:auto">
+        Veja o que os donos de clínicas que já transformaram seus resultados têm a dizer
+      </p>
+
+      <div data-carousel data-slides="1" data-loop style="max-width:64rem;margin:0 auto">
+        <div data-carousel-track>
+          <!-- Video 1 -->
+          <div data-carousel-slide>
+            <iframe
+              src="https://scripts.converteai.net/de1f52b9-182e-4159-9b25-8c5e55b7fd12/players/68f7e3478ea58bfe7173c5b5/v4/embed.html"
+              style="width:100%;max-width:320px;aspect-ratio:9/16;border:none;border-radius:1rem;margin:0 auto;display:block"
+              loading="lazy">
+            </iframe>
+          </div>
+
+          <!-- Video 2 -->
+          <div data-carousel-slide>
+            <iframe
+              src="https://scripts.converteai.net/de1f52b9-182e-4159-9b25-8c5e55b7fd12/players/68f7dee38ea58bfe7173c072/v4/embed.html"
+              style="width:100%;max-width:320px;aspect-ratio:9/16;border:none;border-radius:1rem;margin:0 auto;display:block"
+              loading="lazy">
+            </iframe>
+          </div>
+
+          <!-- Video 3 -->
+          <div data-carousel-slide>
+            <iframe
+              src="https://scripts.converteai.net/de1f52b9-182e-4159-9b25-8c5e55b7fd12/players/68f7d9cbc9a120c812a9e6a7/v4/embed.html"
+              style="width:100%;max-width:320px;aspect-ratio:9/16;border:none;border-radius:1rem;margin:0 auto;display:block"
+              loading="lazy">
+            </iframe>
+          </div>
+
+          <!-- Video 4 -->
+          <div data-carousel-slide>
+            <iframe
+              src="https://scripts.converteai.net/de1f52b9-182e-4159-9b25-8c5e55b7fd12/players/68f7d9ef21b0a6afaf4cc36c/v4/embed.html"
+              style="width:100%;max-width:320px;aspect-ratio:9/16;border:none;border-radius:1rem;margin:0 auto;display:block"
+              loading="lazy">
+            </iframe>
+          </div>
+
+          <!-- Video 5 -->
+          <div data-carousel-slide>
+            <iframe
+              src="https://scripts.converteai.net/de1f52b9-182e-4159-9b25-8c5e55b7fd12/players/68f7df118ea58bfe7173c0b0/v4/embed.html"
+              style="width:100%;max-width:320px;aspect-ratio:9/16;border:none;border-radius:1rem;margin:0 auto;display:block"
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+        <button data-carousel-prev>←</button>
+        <button data-carousel-next>→</button>
+      </div>
+
+      <div class="text-center" style="margin-top:3rem">
+        <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L?checkoutMode=10&bid=1769119719528">
+          QUERO RESULTADOS COMO ESTES
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology Section -->
+  <section id="methodology" class="py-20 loading">
+    <div class="container" style="max-width:72rem">
+      <div class="text-center mb-12">
+        <h2 class="mb-4">
+          O Sistema que Transforma<br>
+          <span class="text-gradient">Leads em Pacientes</span>
+        </h2>
+        <p style="color:rgba(255,255,255,0.6)">
+          6 módulos estruturados para você se tornar uma máquina de conversão
+        </p>
+      </div>
+
+      <div data-carousel data-slides="1" data-loop class="mb-12">
+        <div data-carousel-track>
+          <!-- Módulo 1 -->
+          <div data-carousel-slide>
+            <div class="card-glow" style="border-radius:1rem;overflow:hidden;max-width:400px;margin:0 auto">
+              <img src="/assets/images/modulo1.webp" alt="Módulo 1 - Fundamentos" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:contain">
+              <div style="padding:1.5rem">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem">
+                  <span style="background:rgba(255,107,53,0.1);color:#ff6b35;padding:0.25rem 0.75rem;border-radius:0.5rem;font-size:0.75rem;font-weight:700;border:1px solid rgba(255,107,53,0.2)">FASE 1</span>
+                  <span style="font-size:0.75rem;color:rgba(255,255,255,0.5)">~2h de conteúdo</span>
+                </div>
+                <h3 style="font-size:1.25rem;font-weight:900;color:#ff6b35;margin-bottom:0.5rem">FUNDAMENTOS</h3>
+                <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-bottom:0.75rem">Módulo 1</p>
+                <p style="font-size:0.875rem;color:rgba(255,107,53,0.8);margin-bottom:0.75rem">✓ Entender o perfil ideal de cliente</p>
+                <ul style="list-style:none;padding:0;margin:0">
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:0.5rem">→ ICP Real vs ICP Imaginado</li>
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:0.5rem">→ Os 3 Jogos Empresariais</li>
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6)">→ CRC é vendedora? SIM</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 2 -->
+          <div data-carousel-slide>
+            <div class="card-glow" style="border-radius:1rem;overflow:hidden;max-width:400px;margin:0 auto">
+              <img src="/assets/images/modulo2.webp" alt="Módulo 2" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:contain">
+              <div style="padding:1.5rem">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem">
+                  <span style="background:rgba(255,107,53,0.1);color:#ff6b35;padding:0.25rem 0.75rem;border-radius:0.5rem;font-size:0.75rem;font-weight:700;border:1px solid rgba(255,107,53,0.2)">FASE 2</span>
+                  <span style="font-size:0.75rem;color:rgba(255,255,255,0.5)">~3h de conteúdo</span>
+                </div>
+                <h3 style="font-size:1.25rem;font-weight:900;color:#ff6b35;margin-bottom:0.5rem">CANAIS DE CONVERSÃO</h3>
+                <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-bottom:0.75rem">Módulo 2</p>
+                <p style="font-size:0.875rem;color:rgba(255,107,53,0.8);margin-bottom:0.75rem">✓ Dominar todos os canais de entrada</p>
+                <ul style="list-style:none;padding:0;margin:0">
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:0.5rem">→ Script Meta/Instagram</li>
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:0.5rem">→ Conversão Google em 5 min</li>
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6)">→ Cold Call & Social Selling</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 3 -->
+          <div data-carousel-slide>
+            <div class="card-glow" style="border-radius:1rem;overflow:hidden;max-width:400px;margin:0 auto">
+              <img src="/assets/images/modulo3.webp" alt="Módulo 3 - Engajamento & Follow-up" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:contain">
+              <div style="padding:1.5rem">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem">
+                  <span style="background:rgba(255,107,53,0.1);color:#ff6b35;padding:0.25rem 0.75rem;border-radius:0.5rem;font-size:0.75rem;font-weight:700;border:1px solid rgba(255,107,53,0.2)">FASE 3</span>
+                  <span style="font-size:0.75rem;color:rgba(255,255,255,0.5)">~2.5h de conteúdo</span>
+                </div>
+                <h3 style="font-size:1.25rem;font-weight:900;color:#ff6b35;margin-bottom:0.5rem">ENGAJAMENTO & FOLLOW-UP</h3>
+                <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-bottom:0.75rem">Módulo 3</p>
+                <p style="font-size:0.875rem;color:rgba(255,107,53,0.8);margin-bottom:0.75rem">✓ Nunca mais perder lead por falta de follow-up</p>
+                <ul style="list-style:none;padding:0;margin:0">
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:0.5rem">→ Fato Novo</li>
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:0.5rem">→ BANT & SPIN Selling</li>
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6)">→ 13 Tipos de Conteúdo</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 4 -->
+          <div data-carousel-slide>
+            <div class="card-glow" style="border-radius:1rem;overflow:hidden;max-width:400px;margin:0 auto">
+              <img src="/assets/images/modulo4.webp" alt="Módulo 4 - Rapport & Conexão" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:contain">
+              <div style="padding:1.5rem">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem">
+                  <span style="background:rgba(255,107,53,0.1);color:#ff6b35;padding:0.25rem 0.75rem;border-radius:0.5rem;font-size:0.75rem;font-weight:700;border:1px solid rgba(255,107,53,0.2)">FASE 4</span>
+                  <span style="font-size:0.75rem;color:rgba(255,255,255,0.5)">~2h de conteúdo</span>
+                </div>
+                <h3 style="font-size:1.25rem;font-weight:900;color:#ff6b35;margin-bottom:0.5rem">RAPPORT & CONEXÃO</h3>
+                <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-bottom:0.75rem">Módulo 4</p>
+                <p style="font-size:0.875rem;color:rgba(255,107,53,0.8);margin-bottom:0.75rem">✓ Aumentar 60% a conversão com conexão</p>
+                <ul style="list-style:none;padding:0;margin:0">
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:0.5rem">→ Regra dos 5 Minutos (+60% conversão)</li>
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:0.5rem">→ Gerando Conexão Verdadeira</li>
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6)">→ Técnicas de Autoridade</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 5 -->
+          <div data-carousel-slide>
+            <div class="card-glow" style="border-radius:1rem;overflow:hidden;max-width:400px;margin:0 auto">
+              <img src="/assets/images/modulo5.webp" alt="Módulo 5 - Funil & Jornada de Compra" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:contain">
+              <div style="padding:1.5rem">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem">
+                  <span style="background:rgba(255,107,53,0.1);color:#ff6b35;padding:0.25rem 0.75rem;border-radius:0.5rem;font-size:0.75rem;font-weight:700;border:1px solid rgba(255,107,53,0.2)">FASE 5</span>
+                  <span style="font-size:0.75rem;color:rgba(255,255,255,0.5)">~3h de conteúdo</span>
+                </div>
+                <h3 style="font-size:1.25rem;font-weight:900;color:#ff6b35;margin-bottom:0.5rem">FUNIL & JORNADA DE COMPRA</h3>
+                <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-bottom:0.75rem">Módulo 5</p>
+                <p style="font-size:0.875rem;color:rgba(255,107,53,0.8);margin-bottom:0.75rem">✓ Eliminar no-show e desistências</p>
+                <ul style="list-style:none;padding:0;margin:0">
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:0.5rem">→ 6 Etapas do Funil (MQL → Fechamento)</li>
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:0.5rem">→ Metáfora dos Reinos</li>
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6)">→ Técnicas Anti-No-Show</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 6 -->
+          <div data-carousel-slide>
+            <div class="card-glow" style="border-radius:1rem;overflow:hidden;max-width:400px;margin:0 auto">
+              <img src="/assets/images/modulo6.webp" alt="Módulo 6 - Fechamento Infalível" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:contain">
+              <div style="padding:1.5rem">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem">
+                  <span style="background:rgba(255,107,53,0.1);color:#ff6b35;padding:0.25rem 0.75rem;border-radius:0.5rem;font-size:0.75rem;font-weight:700;border:1px solid rgba(255,107,53,0.2)">FASE 6</span>
+                  <span style="font-size:0.75rem;color:rgba(255,255,255,0.5)">~2.5h de conteúdo</span>
+                </div>
+                <h3 style="font-size:1.25rem;font-weight:900;color:#ff6b35;margin-bottom:0.5rem">FECHAMENTO INFALÍVEL</h3>
+                <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-bottom:0.75rem">Módulo 6</p>
+                <p style="font-size:0.875rem;color:rgba(255,107,53,0.8);margin-bottom:0.75rem">✓ Fechar mais vendas com confiança</p>
+                <ul style="list-style:none;padding:0;margin:0">
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:0.5rem">→ Roteiro de Fechamento Completo</li>
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:0.5rem">→ Quebra de Objeções</li>
+                  <li style="font-size:0.875rem;color:rgba(255,255,255,0.6)">→ Guardião das Vendas Saudáveis</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button data-carousel-prev>←</button>
+        <button data-carousel-next>→</button>
+      </div>
+
+      <div class="text-center">
+        <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L?checkoutMode=10&bid=1769119719528">
+          QUERO DOMINAR ESSE MÉTODO →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credibility Section -->
+  <section id="credibility" class="py-20 loading" style="background:rgba(255,107,53,0.02)">
+    <div class="container" style="max-width:80rem">
+      <h2 class="text-center mb-12">
+        Quem Está Por Trás dos<br>
+        <span class="text-gradient">Resultados Comprovados</span>
+      </h2>
+
+      <div style="display:grid;grid-template-columns:1fr;gap:3rem;align-items:center;max-width:60rem;margin:0 auto">
+        <!-- Text -->
+        <div style="text-align:center;order:2">
+          <h3 style="font-size:0.875rem;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:1rem">O ESPECIALISTA QUE</h3>
+          <h4 style="font-size:2rem;font-weight:900;margin-bottom:1rem">
+            Transforma CRCs em<br>
+            <span class="text-gradient">Vendedoras de Alto Nível</span>
+          </h4>
+          <p style="font-size:1.125rem;color:rgba(255,255,255,0.7)">
+            Eu não te ensino a atender. Eu te ensino a <span style="color:#ff6b35;font-weight:700">VENDER</span>.
+          </p>
+        </div>
+
+        <!-- Fernando Photo + Stats -->
+        <div style="position:relative;order:1">
+          <img src="/assets/images/fernando-machado.webp" alt="Fernando Machado" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:1.5rem">
+
+          <!-- Floating stats LEFT -->
+          <div style="position:absolute;top:1rem;left:1rem;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);padding:0.75rem;border-radius:0.75rem;border:1px solid rgba(255,255,255,0.2)">
+            <p style="font-size:1.25rem;font-weight:900" class="text-gradient">+15 anos</p>
+            <p style="font-size:0.625rem;color:rgba(255,255,255,0.7)">Mercado<br>Odontológico</p>
+          </div>
+
+          <div style="position:absolute;top:30%;left:1rem;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);padding:0.75rem;border-radius:0.75rem;border:1px solid rgba(255,255,255,0.2)">
+            <p style="font-size:1.25rem;font-weight:900" class="text-gradient">R$ 2M+</p>
+            <p style="font-size:0.625rem;color:rgba(255,255,255,0.7)">Vendas<br>Estruturadas</p>
+          </div>
+
+          <div style="position:absolute;top:50%;left:1rem;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);padding:0.75rem;border-radius:0.75rem;border:1px solid rgba(255,255,255,0.2)">
+            <p style="font-size:1.25rem;font-weight:900" class="text-gradient">500+</p>
+            <p style="font-size:0.625rem;color:rgba(255,255,255,0.7)">CRCs<br>Treinadas</p>
+          </div>
+
+          <div style="position:absolute;bottom:1rem;left:1rem;background:rgba(0,0,0,0.95);backdrop-filter:blur(5px);padding:0.5rem 1rem;border-radius:0.75rem;border:1px solid rgba(255,107,53,0.3)">
+            <p style="font-size:0.75rem;font-weight:700">Fernando Machado</p>
+            <p style="font-size:0.625rem;color:#ff6b35">Diretor Comercial<br>f5 estratégia</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:3rem;max-width:56rem;margin-left:auto;margin-right:auto">
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
+          <p style="font-size:1.5rem;font-weight:900" class="text-gradient">22% → 45%</p>
+          <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.05em">Taxa de Conversão</p>
+        </div>
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
+          <p style="font-size:1.5rem;font-weight:900" class="text-gradient">30d → 7d</p>
+          <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.05em">Tempo de Fechamento</p>
+        </div>
+        <div class="card-glow" style="padding:1.5rem;border-radius:0.75rem;text-align:center">
+          <p style="font-size:1.5rem;font-weight:900" class="text-gradient">+35%</p>
+          <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.05em">Ticket Médio</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guarantee Section -->
+  <section id="guarantee" class="py-20 loading" style="background:linear-gradient(180deg,rgba(255,107,53,0.05) 0%,transparent 100%)">
+    <div class="container text-center" style="max-width:56rem">
+      <div style="width:4rem;height:4rem;background:rgba(255,107,53,0.1);border:2px solid rgba(255,107,53,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem">
+        <span style="font-size:2rem">🛡️</span>
+      </div>
+
+      <h2 class="mb-4">
+        Garantia de <span class="text-gradient">30 Dias</span>
+      </h2>
+
+      <p style="font-size:1.125rem;color:rgba(255,255,255,0.7);max-width:42rem;margin:0 auto 2rem">
+        Teste o método por 30 dias. Se não ficar satisfeito, devolvemos <span style="color:#ff6b35;font-weight:700">100% do valor</span>. Sem perguntas.
+      </p>
+
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-bottom:2rem">
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <span style="color:#ff6b35">🛡️</span>
+          <span style="font-size:0.875rem">100% Seguro</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <span style="color:#ff6b35">⏰</span>
+          <span style="font-size:0.875rem">30 Dias</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <span style="color:#ff6b35">🔄</span>
+          <span style="font-size:0.875rem">Sem Burocracia</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <span style="color:#ff6b35">✓</span>
+          <span style="font-size:0.875rem">Garantia Total</span>
+        </div>
+      </div>
+
+      <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L?checkoutMode=10&bid=1769119719528" style="display:inline-block">
+        GARANTIR MINHA VAGA
+      </a>
+
+      <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:1rem">
+        🔒 Pagamento seguro • Garantia de 30 dias
+      </p>
     </div>
   </section>
 
@@ -311,7 +813,7 @@
 
       <div class="text-center">
         <p style="color:rgba(255,255,255,0.6);margin-bottom:1rem">Ainda tem dúvidas?</p>
-        <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L">
+        <a href="#" class="btn-primary cta-button" data-url="https://pay.hotmart.com/A102890720L?checkoutMode=10&bid=1769119719528">
           QUERO COMEÇAR AGORA →
         </a>
         <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.75rem">Garantia de 30 dias ou seu dinheiro de volta</p>
@@ -330,13 +832,12 @@
 
   <!-- Chatbot trigger button -->
   <div id="chatbot-trigger" class="hidden" style="position:fixed;bottom:2rem;right:2rem;z-index:90">
-    <button class="btn-primary" style="padding:1rem 1.5rem;box-shadow:0 10px 30px rgba(255,107,53,0.4);position:relative">
+    <button class="btn-primary" style="padding:1rem 1.5rem;box-shadow:0 10px 30px rgba(255,107,53,0.4);position:relative;border-radius:9999px">
       <span style="position:absolute;top:-0.25rem;right:-0.25rem;width:0.75rem;height:0.75rem;background:#10b981;border-radius:9999px;animation:pulse 2s infinite"></span>
       💬 Consultor ao vivo
     </button>
   </div>
 
-  <!-- Botpress Chatbot Container -->
   <div id="botpress-webchat"></div>
 
   <!-- Load VTurb player -->
