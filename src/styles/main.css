@@ -1,5 +1,21 @@
 /* Main CSS - Loaded after critical inline styles */
 
+/* Responsive Grid for Credibility Section */
+.credibility-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .credibility-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* Accordion Styles */
 .faq-accordion {
   display: flex;

@@ -71,6 +71,12 @@ async function build() {
       console.log('✅ Copied public assets to dist/');
     }
 
+    // Copy src/assets to dist/assets
+    if (existsSync('src/assets')) {
+      copyDirSync('src/assets', 'dist/assets');
+      console.log('✅ Copied src/assets to dist/assets/');
+    }
+
     console.log('✨ Build completed successfully!');
 
     if (isDev) {
